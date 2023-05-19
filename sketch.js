@@ -7,7 +7,6 @@ let gl;
 let ctx;
 let program;
 let backgroundProgram;
-let textureProgram;
 
 let palettes;
 let bacgkroundPalette;
@@ -497,7 +496,6 @@ function launch(){
 
     program = createProgram(gl, vertexShader, fragmentShader);
     backgroundProgram = createProgram(gl, backgroundVertexShader, backgroundFragmentShader);
-    textureProgram = createProgram(gl, backgroundVertexShader, textureFragmentShader);
 
     positionBuffer = gl.createBuffer();
     seedBuffer = gl.createBuffer();
