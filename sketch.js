@@ -99,7 +99,7 @@ function choicesInit(){
         resy0: resy0,
         simx: simx,
         simy: simy,
-        edgeOffset: 50,
+        edgeOffset: 0,
         border: 50,
         pointCount: 40000,
         steps: 100,
