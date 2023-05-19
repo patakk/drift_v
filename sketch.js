@@ -315,7 +315,7 @@ function setupColors(){
             light = rand(.7, .9);
         else
             light = rand(.07, .15);
-        // borderColor = [light, light, light];
+        borderColor = [light, light, light];
     }
 
     let mnc = prng.rand();
