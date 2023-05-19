@@ -294,7 +294,7 @@ function setupColors(){
     let brdhue = brdcolorhsv[0];
     let brdsat = brdcolorhsv[1]*0+.4;
     if(brdhue > .66 && brdhue < .93){
-        console.log('hue shift')
+        // console.log('hue shift')
         brdsat = .25;
     }
     bgsat = brdsat = rand(.1, .23);
