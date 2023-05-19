@@ -31,7 +31,7 @@ export function colorLightness(r, g, b){
 }
 
 
-function rgb2hsv(r, g, b) {
+export function rgb2hsv(r, g, b) {
     let max = Math.max(r, g, b);
     let min = Math.min(r, g, b);
     let h, s, v = max;
@@ -59,7 +59,7 @@ function rgb2hsv(r, g, b) {
     return [h, s, v];
 }
 
-function hsv2rgb(h, s, v) {
+export function hsv2rgb(h, s, v) {
     let r, g, b;
   
     let i = Math.floor(h * 6);
