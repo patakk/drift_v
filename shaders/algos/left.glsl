@@ -1,6 +1,5 @@
 void compute(float time){
     vec2 acc = vec2(0., 0.);
-    // vec2 mouse = vec2(u_Origin.x, u_simulation.y-u_Origin.y);
     float speed = .1;
 
     ivec2 ipos = ivec2(int(pos.x), int(pos.y));
@@ -43,32 +42,14 @@ void compute(float time){
 
 	vec2 fromMouse = vec2(0.0, 0.0);
 	vec2 u_Gravity = vec2(0.0, 0.0);
-	// vec2 fromMouse = pos - mouse;
-	// float tomouselen = length(fromMouse);
-	// if(tomouselen < u_simulation.x*0.1){
-	// 	fromMouse = fromMouse / tomouselen;
-	// 	fromMouse = fromMouse * (1. - tomouselen/u_simulation.x*0.1);
-	// 	fromMouse *= 125.;
-	// }
-	// else{
-	// 	fromMouse = vec2(0.0);
-	// }
 
 	ivec2 noise_coord = ivec2(int(pos.x), int(pos.y));
 
     acc.x = -noisexy.x + fromMouse.x + 0.*u_Gravity.x;
     acc.y = noisexy.y + fromMouse.y + 0.*u_Gravity.y;
 
-
-    
-
-
     float drag = 0.98 + 0.01 * a_seed.x;
-    //drag = drag  - (.5-abs(texcol-.5))*1.;
      drag = drag  - texcol*.4;
-    // drag = 1. - drag;
-
-    //vel = vel + acc*1.05;
     vel = vel + .0*vec2(1.,1.)+acc*.991;
     vel = vel * drag;
 

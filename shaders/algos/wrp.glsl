@@ -41,8 +41,6 @@ void compute(float time){
     ang = 3.14159*1.*simplex3d(vec3(pos*.0024*frqnsaf, u_globalseed*133.134));
     float ang2 = 47.*simplex3d(nzp*0.0527*qq);
 
-    // noisexy.x = r*cos(ang)*1.5 + 0.0*r*cos(ang2);
-    // noisexy.y = r*sin(ang)*1.5 + 0.0*r*sin(ang2);
     ang = 3.14159*2.*simplex3d(vec3(pos*.00144*pow(clamp(length(tc-.5), 0., 1.), 3.), u_globalseed*133.134));
 
     float rrx = -.5 + hash13(vec3(u_globalseed*6.78731+12.112));
@@ -59,16 +57,6 @@ void compute(float time){
 
 	vec2 fromMouse = vec2(0.0, 0.0);
 	vec2 u_Gravity = vec2(0.0, 0.0);
-	// vec2 fromMouse = pos - mouse;
-	// float tomouselen = length(fromMouse);
-	// if(tomouselen < u_simulation.x*0.1){
-	// 	fromMouse = fromMouse / tomouselen;
-	// 	fromMouse = fromMouse * (1. - tomouselen/u_simulation.x*0.1);
-	// 	fromMouse *= 125.;
-	// }
-	// else{
-	// 	fromMouse = vec2(0.0);
-	// }
 
 	ivec2 noise_coord = ivec2(int(pos.x), int(pos.y));
 
@@ -77,27 +65,12 @@ void compute(float time){
 
 
     float drag = 0.99 + 0.0 * a_seed.x;
-     //drag = drag  - (.5-abs(texcol-.5))*.99;
     drag = drag  - texcol*.9;
 
-    // drag = power(noise(vec2(texcol, texcol)*3.), 6.);
     
-    vec2 center = vec2(.5, .5); // + .5*(-.5 + power(noise(vec2(u_globalseed)*44.11414), 3.));
+    vec2 center = vec2(.5, .5) + .5*(-.5 + power(noise(vec2(u_globalseed)*44.11414), 3.));
     float ddist = pow(length(tc-center)*2./1.314, 5.)*1.7;
 
-    // if(texcol > 0.01){
-        // ddist = smoothstep(.2, .3, ddist);
-        //  drag = drag * (1. + ddist*(1.+1.*power(noise(pos*.00151+u_globalseed*14.41), 5.)));
-        //drag = drag * (1. + ddist*6.);
-    // }
-    // else
-    //     drag = drag * (1. - ddist);
-    
-    // if(texcol < 0.01){
-    //     drag = .9;   
-    // }
-
-    //vel = vel + acc*1.05;
     vel = vel + .0*vec2(1.,1.)+acc*.991;
     vel = vel * drag;
 

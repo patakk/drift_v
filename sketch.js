@@ -225,7 +225,7 @@ function choicesInit(){
     if(combination.shapecount){
         options.shapecount = combination.shapecount;
     }
-    // combination.base = 'lepez';
+     combination.shader = 'wrp';
     computeShaderSource =  `./shaders/algos/${combination.shader}.glsl`;
     simulateShaderSource =  `./shaders/simulate.glsl`;
     fragmentShaderSource = './shaders/drawing.glsl';

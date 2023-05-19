@@ -73,7 +73,7 @@ export function createDrawing(ctx, options){
     }
 
     let slicedPalette = palette;
-    let gradientVisibility = rand(.3, 1.);
+    let gradientVisibility = rand(.3, 1.)*.5;
     let pidx3 = map(Math.pow(prng.rand(), 2), 0, 1, 0, slicedPalette.length);
     let color3 = slicedPalette[Math.floor(pidx3+slicedPalette.length)%slicedPalette.length];
     for(let k = 0; k < options.shapecount; k++){
