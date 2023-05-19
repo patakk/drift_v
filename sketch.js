@@ -174,30 +174,30 @@ function choicesInit(){
     }
     
     various = [
-        {base: 'stc', shader: 'disorder', shapecount: rand(10, 13)}, // works
-        {base: 'bc', shader: 'powder', shapecount: rand(12,13)},
-        {base: 'crowley', shader: 'left', shapecount: rand(30, 100)}, // works
-        {base: 'crowley', shader: 'left', shapecount: rand(20, 40)}, // MOZDA
-        {base: 'ryc', shader: 'powder', shapecount: 7}, // works
-        {base: 'ryc', shader: 'bedlam', shapecount: 7}, // MOZDA
-        {base: 'crowley', shader: 'powder', shapecount: rand(30, 160)}, // works
-        {base: 'bc', shader: 'powder', shapecount: rand(5,9)}, // works
+        {base: 'stc', shader: 'dsrd', shapecount: rand(10, 13)},
+        {base: 'bc', shader: 'pwdr', shapecount: rand(12,13)},
+        {base: 'crwly', shader: 'left', shapecount: rand(30, 100)},
+        {base: 'crwly', shader: 'left', shapecount: rand(20, 40)},
+        {base: 'ryc', shader: 'pwdr', shapecount: 7},
+        {base: 'ryc', shader: 'bdlm', shapecount: 7},
+        {base: 'crwly', shader: 'pwdr', shapecount: rand(30, 160)},
+        {base: 'bc', shader: 'pwdr', shapecount: rand(5,9)},
         {base: 'sc', shader: 'left', shapecount: rand(133,144)},
-        {base: 'sc', shader: 'bedlam', shapecount: rand(30, 160)}, // MOZDA
-        {base: 'ryc', shader: 'powder', shapecount: rand(133, 144)},
-        {base: 'ryc', shader: 'powder', shapecount: rand(5,6)},
-        {base: 'stc', shader: 'powder', shapecount: rand(10, 14)}, // MOZDA
-        {base: 'bc', shader: 'powder', shapecount: rand(12, 13)},
-        {base: 'crowley', shader: 'powder', shapecount: rand(30, 60)}, // MOZDA
-        {base: 'sc', shader: 'powder', shapecount: 0},
-        {base: 'sc', shader: 'powder', shapecount: 0},
+        {base: 'sc', shader: 'bdlm', shapecount: rand(30, 160)},
+        {base: 'ryc', shader: 'pwdr', shapecount: rand(133, 144)},
+        {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
+        {base: 'stc', shader: 'pwdr', shapecount: rand(10, 14)},
+        {base: 'bc', shader: 'pwdr', shapecount: rand(12, 13)},
+        {base: 'crwly', shader: 'pwdr', shapecount: rand(30, 60)},
+        {base: 'sc', shader: 'pwdr', shapecount: 0},
+        {base: 'sc', shader: 'pwdr', shapecount: 0},
         {base: 'sc', shader: 'left', shapecount: 0},
         {base: 'sc', shader: 'left', shapecount: 0},
-        {base: 'ryc', shader: 'powder', shapecount: rand(5,6)},
-        {base: 'ryc', shader: 'powder', shapecount: rand(5,6)},
-        {base: 'ryc', shader: 'powder', shapecount: rand(5,6)},
-        {base: 'sc', shader: 'powder', shapecount: 0},
-        {base: 'sc', shader: 'powder', shapecount: 0},
+        {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
+        {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
+        {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
+        {base: 'sc', shader: 'pwdr', shapecount: 0},
+        {base: 'sc', shader: 'pwdr', shapecount: 0},
         {base: 'sc', shader: 'left', shapecount: 0},
         {base: 'sc', shader: 'left', shapecount: 0},
     ]
@@ -219,7 +219,7 @@ function choicesInit(){
     }
     else{
         if(prng.rand() < .2)
-            combination.shader = 'warp'
+            combination.shader = 'wrp'
     }
 
     if(combination.shapecount){
@@ -298,19 +298,17 @@ function setupColors(){
     paletteindex = prng.rand() < .66 ? 6 : 7;
     if(prng.rand() < .1)
         paletteindex = niceIndices[Math.floor(prng.rand()*niceIndices.length)];
-    paletteindex = 6
     options.palette = palettes[paletteindex];
-    
     let greyCanvasCondition = prng.rand() < .5;
     let lighCanvasCondition = prng.rand() < .5;
-    let greyPowderCondition = prng.rand() < .5;
-    let lighPowderCondition = prng.rand() < .5;
+    let greypwdrCondition = prng.rand() < .5;
+    let lighpwdrCondition = prng.rand() < .5;
     let greyMainCondition = prng.rand() < .5;
     let lightMainCondition = prng.rand() < .5;
 
-    if(prng.rand() < .75 && greyCanvasCondition && greyPowderCondition && greyMainCondition && !lighCanvasCondition && !lighPowderCondition && !lightMainCondition){
+    if(prng.rand() < .75 && greyCanvasCondition && greypwdrCondition && greyMainCondition && !lighCanvasCondition && !lighpwdrCondition && !lightMainCondition){
         lighCanvasCondition = prng.rand() < .5;
-        lighPowderCondition = prng.rand() < .5;
+        lighpwdrCondition = prng.rand() < .5;
         lightMainCondition = prng.rand() < .5;
     }
 
@@ -322,10 +320,10 @@ function setupColors(){
     }
 
     if(paletteindex == 6 || paletteindex == 7 || paletteindex == 8){
-        while(!greyCanvasCondition && !greyMainCondition && !greyPowderCondition){
+        while(!greyCanvasCondition && !greyMainCondition && !greypwdrCondition){
             greyCanvasCondition = prng.rand() < .5;
             greyMainCondition = prng.rand() < .5;
-            greyPowderCondition = prng.rand() < .5;
+            greypwdrCondition = prng.rand() < .5;
         }
     }
 
@@ -362,7 +360,7 @@ function setupColors(){
     }
     bgsat = brdsat = rand(.1, .23);
 
-    let sidePowder = options.palette[Math.floor(rand(0, options.palette.length))];
+    let sidepwdr = options.palette[Math.floor(rand(0, options.palette.length))];
     let backgroundColor = hsv2rgb(bghue, bgsat, rand(.55, .75));
     let borderColor = hsv2rgb(brdhue, brdsat, prng.rand()<.5?rand(.15, .22):rand(.75, .85));
     if(greyCanvasCondition){ //} && coloringChoice === 'colorful'){
@@ -383,22 +381,22 @@ function setupColors(){
 
     let mnc = prng.rand();
     let iters = 0;
-    // while((mnc > 0.22 && mnc < 0.34 || mnc > 0.7 && mnc < 0.88 && combination.base != 'crowley' && combination.coloring == 'colorful') && iters++ < 100){
+    // while((mnc > 0.22 && mnc < 0.34 || mnc > 0.7 && mnc < 0.88 && combination.base != 'crwly' && combination.coloring == 'colorful') && iters++ < 100){
     //     mnc = prng.rand();
     // }
 
-    if(greyPowderCondition){
+    if(greypwdrCondition){
         let light = rand(.9, 1.);
-        if(lighPowderCondition)
+        if(lighpwdrCondition)
             light = rand(.5, .7);
         else
             light = rand(.025, .05);
-        sidePowder = [light, light, light];
+        sidepwdr = [light, light, light];
     }
 
     u_color2 = backgroundColor;
     u_color1 = borderColor;
-    u_tint1 = [...sidePowder];
+    u_tint1 = [...sidepwdr];
     // u_tint1 = hsv2rgb(rgb2hsv(...u_tint1)[0], .35, prng.rand()<.5?rand(.15, .22):rand(.75, .85))
     u_tint2 = [...options.palette[Math.floor(rand(0, options.palette.length))]];
     // if(prng.rand() < 1.3) u_tint2 = hsv2rgb(rgb2hsv(...u_tint2)[0], .35, prng.rand()<1.5?rand(.15, .22):rand(.75, .85))
