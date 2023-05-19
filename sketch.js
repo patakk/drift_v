@@ -1,6 +1,6 @@
 import { rand, power, map, colorLightness } from './utils/utils.js';
 import { noiseSeed } from './utils/noise.js';
-import { getSourceSynch, createShader, createProgram } from './utils/webglutils.js';
+import { getShaderSource, createShader, createProgram } from './utils/webglutils.js';
 
 let canvas;
 let gl;
@@ -469,23 +469,23 @@ function launch(){
     gl.canvas.width = options.resx;
     gl.canvas.height = options.resy;
 
-    utilsCode = getSourceSynch(utilsShaderSource);
-    computeCode = getSourceSynch(computeShaderSource);
+    utilsCode = getShaderSource(utilsShaderSource);
+    computeCode = getShaderSource(computeShaderSource);
     
-    backgroundVertexCode = getSourceSynch(backgroundVertexSource);
-    backgroundFragmentCode = getSourceSynch(backgroundFragmentSource);
-    textureFragmentCode = getSourceSynch(textureFragmentSource);
+    backgroundVertexCode = getShaderSource(backgroundVertexSource);
+    backgroundFragmentCode = getShaderSource(backgroundFragmentSource);
+    textureFragmentCode = getShaderSource(textureFragmentSource);
 
     backgroundFragmentCode = backgroundFragmentCode
         .replace('#include "utils.glsl"', utilsCode);
 
-    vertexCode = getSourceSynch(simulateShaderSource);
+    vertexCode = getShaderSource(simulateShaderSource);
     vertexCode = vertexCode
         .replace('#include "utils.glsl"', utilsCode)
         .replace('#include "compute.glsl"', computeCode)
         .replace('coloring', combination.coloring);
 
-    fragmentCode = getSourceSynch(fragmentShaderSource);
+    fragmentCode = getShaderSource(fragmentShaderSource);
     fragmentCode = fragmentCode
         .replace('#include "utils.glsl"', utilsCode);
 
