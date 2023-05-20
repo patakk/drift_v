@@ -160,11 +160,9 @@ function choicesInit(){
         if(prng.rand() < .2)
             combination.shader = 'wrp'
     }
-
     if(combination.shapecount){
         options.shapecount = combination.shapecount;
     }
-     combination.shader = 'wrp';
     computeShaderSource =  `./shaders/algos/${combination.shader}.glsl`;
     simulateShaderSource =  `./shaders/simulate.glsl`;
     fragmentShaderSource = './shaders/drawing.glsl';

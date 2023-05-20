@@ -25,6 +25,8 @@ export function createDrawing(ctx, options){
     // let startIndex = Math.floor(prng.rand() * (maxStartIndex + 1));
     // palette = palette.slice(startIndex, startIndex + ncolors);
 
+    let isCircle = prng.rand() < .5;
+
     setColor(ctx, .0, .0, .0);
     ctx.save();
     ctx.translate(dw/2, dh/2);
@@ -123,7 +125,13 @@ export function createDrawing(ctx, options){
         r = map(Math.pow(r, 3), 0, 1, siize+rand(-30,30), 500+rand(-100, 100));
         r = siize;
         setColor(ctx, color3[0], color3[1], color3[2], 1.);
-        rect(ctx, siize, siize);
+        if(isCircle){
+            ctx.beginPath();
+            ctx.arc(0, 0, siize*.707, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        else
+            rect(ctx, siize, siize);
         ctx.rotate(.031*rand(-1, 1));
         
         let gradient = ctx.createLinearGradient(2*r*Math.cos(-ang), 2*r*Math.sin(-ang), -2*r*Math.cos(-ang), -2*r*Math.sin(-ang));
@@ -134,7 +142,13 @@ export function createDrawing(ctx, options){
             ctx.fillStyle = gradient;
         else
             ctx.fillStyle = formatColor(color);
-        rect(ctx, siize, siize);
+        if(isCircle){
+            ctx.beginPath();
+            ctx.arc(0, 0, siize*.707, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        else
+            rect(ctx, siize, siize);
         // ctx.beginPath();
         // ctx.arc(0, 0, r, 0, 2 * Math.PI);
         //ctx.fill();
