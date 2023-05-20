@@ -39,7 +39,7 @@ vec3 redish(vec3 col, vec2 pos){
     float ph = pow(pos.y, 3.);
     ph = noise(col.rb*1.41);
     ph = smoothstep(.0, .99, ph);
-    float redtrans = pow(mod(pos.y + col.r+col.g+col.b, 1.), 3.);
+    float redtrans = pow(abs(1.-mod(pos.y + 5.*col.r+5.*col.g+5.*col.b, 2.)), 3.);
     vec3 redish;
     redish = vec3(.2,.01,.0)*redtrans + (1.-redtrans)*vec3(.09,.0,.0);
     redish = u_tint2*redtrans + (1.-redtrans)*u_tint2*.4;
@@ -50,11 +50,11 @@ vec3 redish(vec3 col, vec2 pos){
 
 vec3 darkish(vec3 col, vec2 pos){
     float ph = pow(pos.y, 3.);
-    ph = 1.*fbm3(col.rb*4.41 + pos.xy*.0, 0.0);
+    ph = noise(col.rb*1.41);
     ph = smoothstep(.19, .81, ph) + .0*hash13(pos.xyx*.31 + mod(hash13(pos.xyx*.45), 1.));
     ph = pow(ph, 3.);
     // ph = smoothstep(.19, .81, ph) + .5*hash13(pos.xyx*.31 + mod(hash13(pos.xyx*.45), 1.));
-    float redtrans = pow(mod(pos.y + col.r+col.g+col.b, 1.), 3.);
+    float redtrans = pow(abs(1.-mod(pos.y + 5.*col.r+5.*col.g+5.*col.b, 2.)), 3.);
     vec3 redish;
     redish = vec3(.1,.1,.1)*redtrans + (1.-redtrans)*u_tint2;
     col.rgb = vec3(0.);
@@ -67,7 +67,7 @@ vec3 greyish(vec3 col, vec2 pos){
     float ph = pow(pos.y, 3.);
     ph = noise(col.rb*1.41);
     ph = smoothstep(.19, .81, ph);
-    float redtrans = pow(mod(pos.y + col.r+col.g+col.b, 1.), 3.);
+    float redtrans = pow(abs(1.-mod(pos.y + 5.*col.r+5.*col.g+5.*col.b, 2.)), 3.);
     vec3 redish;
     redish = vec3(.1,.1,.1)*redtrans + (1.-redtrans)*vec3(.05,.05,.05);
     col.rgb = vec3(0.);
@@ -81,7 +81,7 @@ vec3 greyishh(vec3 col, vec2 pos){
     float ph = pow(pos.y, 3.);
     ph = noise(col.rb*1.41);
     ph = smoothstep(.19, .81, ph);
-    float redtrans = pow(mod(pos.y + col.r+col.g+col.b, 1.), 3.);
+    float redtrans = pow(abs(1.-mod(pos.y + 5.*col.r+5.*col.g+5.*col.b, 2.)), 3.);
     vec3 redish;
     redish = vec3(.1,.1,.1)*redtrans + (1.-redtrans)*vec3(.05,.05,.05);
     col.rgb = vec3(0.55+u_globalseed*.15);

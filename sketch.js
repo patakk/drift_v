@@ -24,7 +24,7 @@ let baseDrawingTexture;
 let utilsCode;
 let computeCode;
 let vertexCode;
-let textureFragmentCode;
+// let textureFragmentCode;
 
 let backgroundFragmentCode;
 let backgroundVertexCode;
@@ -413,7 +413,7 @@ function launch(){
     
     backgroundVertexCode = getShaderSource(backgroundVertexSource);
     backgroundFragmentCode = getShaderSource(backgroundFragmentSource);
-    textureFragmentCode = getShaderSource(textureFragmentSource);
+    // textureFragmentCode = getShaderSource(textureFragmentSource);
 
     backgroundFragmentCode = backgroundFragmentCode
         .replace('#include "utils.glsl"', utilsCode);
@@ -432,7 +432,7 @@ function launch(){
     fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentCode);
     backgroundVertexShader = createShader(gl, gl.VERTEX_SHADER, backgroundVertexCode);
     backgroundFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, backgroundFragmentCode);
-    textureFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, textureFragmentCode);
+    // textureFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, textureFragmentCode);
 
     program = createProgram(gl, vertexShader, fragmentShader);
     backgroundProgram = createProgram(gl, backgroundVertexShader, backgroundFragmentShader);
