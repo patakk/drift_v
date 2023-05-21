@@ -25,7 +25,7 @@ export function createDrawing(ctx, options){
     // let startIndex = Math.floor(prng.rand() * (maxStartIndex + 1));
     // palette = palette.slice(startIndex, startIndex + ncolors);
 
-    let isCircle = prng.rand() < .5;
+    let isCircle = prng.rand() < .3;
 
     setColor(ctx, .0, .0, .0);
     ctx.save();
