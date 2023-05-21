@@ -351,8 +351,6 @@ function launch(){
     
     if(search.get('debug') === 'true'){
         console.log('debug mode')
-        console.log('hash: ', hash);
-        console.log('baseChoice', baseChoice);
         console.log('base', combination.base);
         console.log('shader', combination.shader);
     }
