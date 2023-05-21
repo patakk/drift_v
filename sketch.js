@@ -121,24 +121,24 @@ function choicesInit(){
         {base: 'ryc', shader: 'bdlm', shapecount: 7},
         {base: 'crwly', shader: 'pwdr', shapecount: rand(30, 160)},
         {base: 'bc', shader: 'pwdr', shapecount: rand(5,9)},
-        {base: 'sc', shader: 'left', shapecount: rand(133,144)},
-        {base: 'sc', shader: 'bdlm', shapecount: rand(30, 160)},
+        {base: 'sc', shader: 'left', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'bdlm', shapecount: rand(30, 160)*1.0000},
         {base: 'ryc', shader: 'pwdr', shapecount: rand(133, 144)},
         {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
         {base: 'stc', shader: 'pwdr', shapecount: rand(10, 14)},
         {base: 'bc', shader: 'pwdr', shapecount: rand(12, 13)},
-        {base: 'crwly', shader: 'pwdr', shapecount: rand(30, 60)},
-        {base: 'sc', shader: 'pwdr', shapecount: 0},
-        {base: 'sc', shader: 'pwdr', shapecount: 0},
-        {base: 'sc', shader: 'left', shapecount: 0},
-        {base: 'sc', shader: 'left', shapecount: 0},
+        {base: 'crwly', shader: 'pwdr', shapecount: rand(30, 160)},
+        {base: 'sc', shader: 'pwdr', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'pwdr', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'left', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'left', shapecount: rand(30, 160)*1.0000},
         {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
         {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
         {base: 'ryc', shader: 'pwdr', shapecount: rand(5,6)},
-        {base: 'sc', shader: 'pwdr', shapecount: 0},
-        {base: 'sc', shader: 'pwdr', shapecount: 0},
-        {base: 'sc', shader: 'left', shapecount: 0},
-        {base: 'sc', shader: 'left', shapecount: 0},
+        {base: 'sc', shader: 'pwdr', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'pwdr', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'left', shapecount: rand(30, 160)*1.0000},
+        {base: 'sc', shader: 'left', shapecount: rand(30, 160)*1.0000},
     ]
     options.renderScale = search.get('size');
 
@@ -160,9 +160,9 @@ function choicesInit(){
         if(prng.rand() < .2)
             combination.shader = 'wrp'
     }
-    if(combination.shapecount){
-        options.shapecount = combination.shapecount;
-    }
+    options.shapecount = combination.shapecount;
+    options.base = combination.base;
+    options.shader = combination.shader;
     computeShaderSource =  `./shaders/algos/${combination.shader}.glsl`;
     simulateShaderSource =  `./shaders/simulate.glsl`;
     fragmentShaderSource = './shaders/drawing.glsl';
@@ -170,7 +170,6 @@ function choicesInit(){
     backgroundFragmentSource = './shaders/bgFragment.glsl';
     textureFragmentSource = './shaders/textureFragment.glsl';
     backgroundVertexSource = './shaders/bgVertex.glsl';
-
     options.globalseed = prng.rand();
 }
 
@@ -348,15 +347,24 @@ function setupColors(){
 }
 
 function launch(){
+
     
+    if(search.get('debug') === 'true'){
+        console.log('debug mode')
+        console.log('hash: ', hash);
+        console.log('baseChoice', baseChoice);
+        console.log('base', combination.base);
+        console.log('shader', combination.shader);
+    }
     // console.log('hash: ', hash);
     setupColors();
 
     baseDrawing = createDrawing(ctx, options);
     baseDrawing.style.width = 170+'px';
     baseDrawing.style.height = 170*options.resy/options.resx+'px';
-    // if(search.get('debug') === 'true')
-    //     document.body.appendChild(baseDrawing);
+    if(search.get('debug') === 'true'){
+        document.body.appendChild(baseDrawing);
+    }
     baseDrawing.style.position = 'absolute';
     baseDrawing.style.top = options.edgeOffset+'px';
     baseDrawing.style.left = options.edgeOffset+'px';

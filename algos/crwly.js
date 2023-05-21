@@ -66,13 +66,23 @@ export function createDrawing(ctx, options){
     }
     
     let siize = rand(50, 100);
-    let brd = siize*1.4;
+    
+    let fat = false
+    if(isCircle && frq < .013 && options.shader == 'left' && options.coloring != 'colorful'){
+        fat = true;
+        siize = rand(400, 500);
+    }
+
+    let brd = siize*1.;
+    if(fat)
+        brd = siize*.6;
     for(let k = 0; k < options.shapecount; k++){
         let {x, y} = allpoints[k];
         x = map(x, minx, maxx, brd, dw-brd);
         y = map(y, miny, maxy, brd, dh-brd);
         allpoints[k] = {x, y};
     }
+
 
     let slicedPalette = palette;
     let gradientVisibility = .95;
@@ -124,15 +134,15 @@ export function createDrawing(ctx, options){
         r = map(dist, 0, maxdist, 0, 1);
         r = map(Math.pow(r, 3), 0, 1, siize+rand(-30,30), 500+rand(-100, 100));
         r = siize;
-        setColor(ctx, color3[0], color3[1], color3[2], 1.);
-        if(isCircle){
-            ctx.beginPath();
-            ctx.arc(0, 0, siize*.707, 0, 2 * Math.PI);
-            ctx.fill();
-        }
-        else
-            rect(ctx, siize, siize);
-        ctx.rotate(.031*rand(-1, 1));
+        // setColor(ctx, color3[0], color3[1], color3[2], 1.);
+        // if(isCircle){
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, siize*.707, 0, 2 * Math.PI);
+        //     ctx.fill();
+        // }
+        // else
+        //     rect(ctx, siize, siize);
+        // ctx.rotate(.031*rand(-1, 1));
         
         let gradient = ctx.createLinearGradient(2*r*Math.cos(-ang), 2*r*Math.sin(-ang), -2*r*Math.cos(-ang), -2*r*Math.sin(-ang));
         gradient.addColorStop(0, formatColor(color));
@@ -144,7 +154,7 @@ export function createDrawing(ctx, options){
             ctx.fillStyle = formatColor(color);
         if(isCircle){
             ctx.beginPath();
-            ctx.arc(0, 0, siize*.707, 0, 2 * Math.PI);
+            ctx.arc(0, 0, siize*.507, 0, 2 * Math.PI);
             ctx.fill();
         }
         else
