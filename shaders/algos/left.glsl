@@ -30,7 +30,7 @@ void compute(float time){
     float r = .6;
     float ang = 17.*simplex3d(u_globalseed*12.31+nzp*0.0527*qq);
     float ang2 = 47.*simplex3d(u_globalseed*12.31+nzp*0.0527*qq);
-    ang = u_globalseed*21.313;
+    // ang = u_globalseed*21.313;
 
     noisexy.x = r*cos(ang)*12.5 + 0.0*r*cos(ang2);
     noisexy.y = r*sin(ang)*12.5 + 0.0*r*sin(ang2);
