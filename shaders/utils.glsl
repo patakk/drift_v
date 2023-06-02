@@ -18,6 +18,28 @@ float hash12(vec2 p)
 }
 
 
+#define PI 3.1415926536
+#define C -0.3431457505
+#define B -0.31370849898
+#define A 1.65685424949
+
+// Approximate
+float approxSinstep(float x)
+{
+    return x * (x * (C * x + B) + A);
+}
+
+float mysin(float x){
+	float o = floor(x / PI);
+	x = mod(x, PI);
+	if(abs(mod(o, 2.) - 0.0) < .1){
+		return approxSinstep(x/.55/PI);
+	}
+	else{
+		return -approxSinstep(x/.55/PI);
+	}
+}
+
 float hue2rgb(float p, float q, float t) {
   if (t < 0.0) t += 1.0;
   if (t > 1.0) t -= 1.0;
@@ -112,7 +134,7 @@ float fbm (vec2 _st) {
 
 
 vec3 random3(vec3 c) {
-	float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+	float j = 4096.0*mysin(dot(c,vec3(17.0, 59.4, 15.0)));
 	vec3 r;
 	r.z = fract(512.0*j);
 	j *= .125;
