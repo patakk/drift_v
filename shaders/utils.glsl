@@ -110,21 +110,6 @@ float fbm (vec2 _st) {
     return v;
 }
 
-float fbm3 (vec2 _st, float t) {
-    float v = 0.0;
-    float a = 0.5;
-    vec2 shift = vec2(100.0);
-    // Rotate to reduce axial bias
-    mat2 rot = mat2(cos(0.5), sin(0.5),
-                    -sin(0.5), cos(0.50));
-    for (int i = 0; i < NUM_OCTAVES; ++i) {
-        v += a * noise3(_st, t);
-        _st = rot * _st * 2.0 + shift;
-        a *= 0.5;
-    }
-    return v;
-}
-
 
 vec3 random3(vec3 c) {
 	float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
@@ -185,6 +170,21 @@ float simplex3d(vec3 p) {
 	 
 	 /* 3. return the sum of the four surflets */
 	 return dot(d, vec4(52.0));
+}
+
+float fbm3 (vec2 _st, float t) {
+    // float v = 0.0;
+    // float a = 0.5;
+    // vec2 shift = vec2(100.0);
+    // // Rotate to reduce axial bias
+    // mat2 rot = mat2(cos(0.5), sin(0.5),
+    //                 -sin(0.5), cos(0.50));
+    // for (int i = 0; i < NUM_OCTAVES; ++i) {
+    //     v += a * noise3(_st, t);
+    //     _st = rot * _st * 2.0 + shift;
+    //     a *= 0.5;
+    // }
+    return simplex3d(vec3(_st, t));
 }
 
 /* const matrices for 3d rotation */
